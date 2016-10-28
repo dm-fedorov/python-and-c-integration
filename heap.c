@@ -2,8 +2,16 @@
 
 typedef struct {
     PyObject_HEAD
-    /* Type-specific fields go here. */
+    PyListObject list;
+    int state;    
 } heap_HeapObject;
+
+static int heap_HeapObject_init(heap_HeapObject *self, PyObject *args) {
+    int *data;
+    if (!PyArg_ParseTuple(args, "l", &data)) {
+        return NULL;
+    }
+}
 
 static PyTypeObject heap_BinaryHeapType = {
     /* Everything about object */
