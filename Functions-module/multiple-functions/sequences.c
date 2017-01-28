@@ -1,10 +1,9 @@
 #include <Python.h>
-#include <stdio.h>
 #include <string.h>
 
 static PyObject *reverse_string(PyObject *self, PyObject *args) {
     const char *string;
-    // cделать тайминг быстро реверса стандартного и этого?
+    // cделать тайминг быстроты реверса стандартного и этого?
     if (!PyArg_ParseTuple(args, "s", &string)) {
         return NULL;
     }
