@@ -13,8 +13,8 @@ static PyObject *py_plus(PyObject *self, PyObject *args) {
 static PyMethodDef ownmod_methods[] = {
     { 
         "plus", // name of fucntion in python interpreter
-        py_plus, 
-        METH_VARARGS, 
+        py_plus, // function declaration
+        METH_VARARGS, // special macros about function arguments
         "plus function" // doc for function in python interpreter
     },
     { NULL, NULL, 0, NULL }
@@ -23,10 +23,10 @@ static PyMethodDef ownmod_methods[] = {
 static PyModuleDef simple_module = {
     /* Info about module */
     PyModuleDef_HEAD_INIT,
-    "simple", /* __name__ */
-    "Oh my god", /* simple.__doc__ */
+    "simple", // simple.__name__ 
+    "Oh my god", // simple.__doc__ 
     -1, 
-    ownmod_methods, /* methods are here */
+    ownmod_methods, // methods are here 
     NULL, 
     NULL, 
     NULL, 
@@ -37,7 +37,7 @@ static PyModuleDef simple_module = {
 PyMODINIT_FUNC PyInit_simple(void)
 {
     PyObject* m;
-    
+    // creating module object
     m = PyModule_Create(&simple_module);
     if (m == NULL)
         return NULL;
