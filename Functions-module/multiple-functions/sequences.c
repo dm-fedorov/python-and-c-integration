@@ -1,21 +1,42 @@
 #include <Python.h>
+#include <stdio.h>
+#include <string.h>
 
-static PyObject *py_plus(PyObject *self, PyObject *args) {
-  double x, y, result;
+static PyObject *reverse_string(PyObject *self, PyObject *args) {
+    const char *string;
+    // cделать тайминг быстро реверса стандартного и этого?
+    if (!PyArg_ParseTuple(args, "s", &string)) {
+        return NULL;
+    }
 
-  if (!PyArg_ParseTuple(args,"dd", &x, &y)) {
-    return NULL;
-  }
-  result = x + y;
-  return Py_BuildValue("d", result);
+    /* get range */
+    char *start = string;
+    char *end = start + strlen(string) - 1; /* -1 for \0 */
+    char temp;
+
+    /* reverse */
+    while (end > start)
+    {
+        /* swap */
+        temp = *start;
+        *start = *end;
+        *end = temp;
+
+        /* move */
+        ++start;
+        --end;
+    }
+
+    return Py_BuildValue("s", string);
+    //Py_RETURN_NONE;
 }
 
 static PyMethodDef ownmod_methods[] = {
     { 
-        "plus", // name of fucntion in python interpreter
-        py_plus, // function declaration
+        "reverse_string", // name of function in python interpreter
+        reverse_string, // function declaration
         METH_VARARGS, // special macros about function arguments
-        "plus function" // doc for function in python interpreter
+        "function, that reverse strings" // doc for function in python interpreter
     },
     { NULL, NULL, 0, NULL }
 };
@@ -23,8 +44,8 @@ static PyMethodDef ownmod_methods[] = {
 static PyModuleDef simple_module = {
     /* Info about module */
     PyModuleDef_HEAD_INIT,
-    "simple", // simple.__name__ 
-    "Oh my god", // simple.__doc__ 
+    "sequences", // simple.__name__ 
+    "Module for working with sequences", // simple.__doc__ 
     -1, 
     ownmod_methods, // methods are here 
     NULL, 
@@ -34,7 +55,7 @@ static PyModuleDef simple_module = {
     NULL
 };
 
-PyMODINIT_FUNC PyInit_simple(void)
+PyMODINIT_FUNC PyInit_sequences(void)
 {
     PyObject* m;
     // creating module object

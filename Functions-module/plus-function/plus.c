@@ -13,7 +13,7 @@ static PyObject *py_plus(PyObject *self, PyObject *args) {
 static PyMethodDef ownmod_methods[] = {
     { 
         "plus", // name of fucntion in python interpreter
-        py_plus, // function declaration
+        py_plus, // function C declaration
         METH_VARARGS, // special macros about function arguments
         "plus function" // doc for function in python interpreter
     },
