@@ -23,8 +23,8 @@ static PyMethodDef ownmod_methods[] = {
 static PyModuleDef simple_module = {
     /* Info about module */
     PyModuleDef_HEAD_INIT,
-    "my_plus", // my_plus.__name__ 
-    "amazing documentation", // my_plus.__doc__ 
+    "simple", // simple.__name__ 
+    "Oh my god", // simple.__doc__ 
     -1, 
     ownmod_methods, // methods are here 
     NULL, 
@@ -34,7 +34,7 @@ static PyModuleDef simple_module = {
     NULL
 };
 
-PyMODINIT_FUNC PyInit_my_plus(void)
+PyMODINIT_FUNC PyInit_simple(void)
 {
     PyObject* m;
     // creating module object
